@@ -1,7 +1,7 @@
 FROM elixir:1.11.3-alpine
 
 # install build dependencies
-RUN apk add --no-cache build-base npm git python3
+RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
 
 #setup Rust for MJML transpiler
 ENV RUSTUP_HOME=/usr/local/rustup \
