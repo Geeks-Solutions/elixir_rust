@@ -1,4 +1,4 @@
-FROM elixir:1.11.3-alpine
+FROM elixir:1.12.3-alpine
 
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
