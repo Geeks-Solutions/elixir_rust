@@ -1,7 +1,7 @@
-FROM elixir:1.13.1-alpine
+FROM hexpm/elixir:1.13.3-erlang-22.3.4.20-alpine-3.14.0
 
 # install build dependencies
-RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
+RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg wkhtmltopdf
 
 #setup Rust for MJML transpiler
 ENV RUSTUP_HOME=/usr/local/rustup \
