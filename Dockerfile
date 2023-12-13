@@ -1,7 +1,11 @@
-FROM hexpm/elixir:1.14.0-erlang-25.1-alpine-3.15.6
+FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.18.0-0.12.6-full as wkhtmltopdf
+FROM hexpm/elixir:1.15.7-erlang-26.2-alpine-3.18.4
 
 # install build dependencies
-RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg wkhtmltopdf
+RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
+
+# wkhtmltopdf copy bins from ext image
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/libwkhtmltox.so /bin/
 
 #setup Rust for MJML transpiler
 ENV RUSTUP_HOME=/usr/local/rustup \
