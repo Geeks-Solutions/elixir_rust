@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.13.3-erlang-22.3.4.20-alpine-3.14.0
+FROM hexpm/elixir:1.14.0-erlang-25.1-alpine-3.15.6
 
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg wkhtmltopdf
