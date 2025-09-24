@@ -1,11 +1,13 @@
-FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.18.0-0.12.6-full as wkhtmltopdf
-FROM hexpm/elixir:1.16.0-erlang-26.2.1-alpine-3.18.4
+FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.20.3-0.12.6-full AS wkhtmltopdf
+FROM hexpm/elixir:1.18.4-erlang-28.1-alpine-3.20.7
 
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
 
 # wkhtmltopdf copy bins from ext image
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/libwkhtmltox.so /bin/
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin
+COPY --from=wkhtmltopdf /bin/wkhtmltoimage /bin/wkhtmltoimage
+COPY --from=wkhtmltopdf /lib/libwkhtmltox* /lib/
 
 #setup Rust for MJML transpiler
 ENV RUSTUP_HOME=/usr/local/rustup \
@@ -31,7 +33,7 @@ RUN set -eux; \
     rustup --version; \
     cargo --version; \
     rustc --version;
-    
+
 # install hex + rebar
 RUN mix local.hex --force && \
     mix local.rebar --force
