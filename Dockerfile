@@ -1,5 +1,5 @@
 FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.18.0-0.12.6-full as wkhtmltopdf
-FROM hexpm/elixir:1.15.7-erlang-26.2-alpine-3.18.4
+FROM hexpm/elixir:1.16.0-erlang-26.2.1-alpine-3.18.4
 
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
@@ -11,7 +11,7 @@ COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/libwkhtmltox.so /bin/
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=1.50.0 \
+    RUST_VERSION=1.75.0 \
     RUSTFLAGS="-C target-feature=-crt-static"
 
 RUN set -eux; \

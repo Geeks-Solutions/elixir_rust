@@ -33,3 +33,14 @@ COPY entrypoint.sh .
 # Run the Phoenix app
 CMD ["./entrypoint.sh"]
 ```
+
+## Development
+If you want to contribute you can update the versions necessary and then build for multiple plateforms:
+```bash
+docker buildx build . --platform linux/amd64,linux/arm64 -t geeks5olutions/elixir_rust:{tag}
+```
+
+To debug you can add the following parameters to the above command:
+`--progress=plain --no-cache`
+
+To push to the registry run the buildx command with the `--push` param
