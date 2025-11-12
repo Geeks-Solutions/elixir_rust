@@ -1,5 +1,5 @@
 FROM ghcr.io/surnet/alpine-wkhtmltopdf:3.20.3-0.12.6-full AS wkhtmltopdf
-FROM hexpm/elixir:1.18.4-erlang-28.1-alpine-3.20.7
+FROM hexpm/elixir:1.19.2-erlang-28.1.1-alpine-3.20.8
 
 # install build dependencies
 RUN apk add --no-cache build-base npm git python3 imagemagick ffmpeg
